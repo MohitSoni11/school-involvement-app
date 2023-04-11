@@ -1,5 +1,9 @@
 {
     "users": [
-        
+        {
+            "email": "mohitksoni@outlook.com",
+            "password": "Hello",
+            "name": "Mohit Soni"
+        }
     ]
 }

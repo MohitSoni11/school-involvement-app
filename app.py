@@ -14,8 +14,7 @@ def signup():
   if (request.method == 'POST'):
     data = {'email': request.form['email'], 
             'password': request.form['password'],
-            'name': request.form['name'],
-            'points': 0}
+            'name': request.form['name']}
     
     if (check_json(request.form['email'], request.form['password'])):
       return render_template('signup.html', repeat=True)
@@ -29,9 +28,9 @@ def signup():
 def login():
   if (request.method == 'POST'):
     if (check_json(request.form['email'], request.form['password'])):
-      return 'Logged In!'
+      return redirect('/home')
     else:
-      return 'Incorrect credentials!'
+      return render_template('login.html', incorrect=True)
   else:
     return render_template('login.html')
   

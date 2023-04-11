@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   </head>
   <body>
+    <h1>Admin Login</h1>
+
     <form action="/login" method="POST" id="login">
       <div id="email">
         <label for="email">Admin email: </label>
@@ -23,5 +25,9 @@
 
       <button type="submit">Login</button>
     </form>
+
+    {% if incorrect == True %}
+      <p>The provided credentials are incorrect.</p>
+    {% endif %}
   </body>
 </html>
