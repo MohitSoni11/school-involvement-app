@@ -14,7 +14,8 @@ def signup():
   if (request.method == 'POST'):
     data = {'email': request.form['email'], 
             'password': request.form['password'],
-            'name': request.form['name']}
+            'name': request.form['name'],
+            'points': 0}
     
     if (check_json(request.form['email'], request.form['password'])):
       return render_template('signup.html', repeat=True)
