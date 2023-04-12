@@ -7,7 +7,9 @@ app = Flask(
   static_folder='static'
   )
 
+#######################################################
 ####################### Routing #######################
+#######################################################
 
 # Intro screen
 @app.route('/')
@@ -69,6 +71,10 @@ def student_login():
       student_password = password
       global student_name
       student_name = name
+      global student_points
+      student_points = get_student_info(student_email, student_password)[0]
+      global student_grade
+      student_grade = get_student_info(student_email, student_password)[1]
       return redirect('/student-home')
     else:
       return render_template('student-login.html', incorrect=True)
@@ -82,6 +88,7 @@ def student_signUp():
     data = {'email': request.form['email'], 
             'password': request.form['password'],
             'name': request.form['name'],
+            'grade': request.form['grade'],
             'points': 0}
     
     if (len(check_json(data['email'], data['password'], filename='students.json')) != 0):
@@ -91,8 +98,28 @@ def student_signUp():
       return redirect('/student-login')
   else:
     return render_template('student-signup.html')
+  
+# Student Home Screen
+@app.route('/student-home')
+def student_home():
+  return render_template('student-home.html', 
+                         name=student_name, 
+                         points=student_points,
+                         grade=student_grade)
+  
+# Grade Leaderboard
+@app.route('/grade-leaderboard', methods=['POST', 'GET'])
+def grade_leaderboard():
+  if (request.method == 'POST'):
+    grade = request.form['grade-selection']
+    leaderboard = get_grade_leaderboard(grade)[0:10]
+    return leaderboard
+  else:
+    return render_template('grade-leaderboard.html')
 
+##############################################################
 ####################### Helper Methods #######################
+##############################################################
   
 def write_json(new_data, filename='admin.json'):
   with open(filename, 'r+') as file:
@@ -109,3 +136,29 @@ def check_json(email, password, filename='admin.json'):
       if (user['email'] == email and user['password'] == password):
         return user['name']
     return ''
+  
+def get_student_info(email, password):
+  with open('students.json', 'r+') as file:
+    file_data = json.load(file)
+    student_data = file_data['users']
+    for student in student_data:
+      if (student['email'] == email and student['password'] == password):
+        return [student['points'], student['grade']]
+    return [-1, -1]
+  
+def get_grade_leaderboard(grade):
+  with open('students.json', 'r+') as file:
+    file_data = json.load(file)
+    student_data = file_data['users']
+    grade_students = []
+    for student in student_data:
+      if (student['grade'] == grade):
+        grade_students.append([student['name'], student['points']])
+    grade_students.sort(key=sort_second, reverse=True)
+    return grade_students
+        
+def sort_second(val):
+  return val[1]
+    
+    
+    
