@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+
+    <!-- Importing Inter Font -->
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  </head>
+  <body>
+    <h1>Admin Sign Up</h1>
+
+    <form action="/admin-signup" method="POST" id="login">
+      <div id="name">
+        <label for="name">Enter your full name: </label>
+        <input type="text" name="name" placeholder="Teddy Dong">
+      </div>
+
+      <div id="email">
+        <label for="email">Enter admin email: </label>
+        <input type="text" name="email" placeholder="Email Address">
+      </div>
+
+      <div id="password">
+        <label for="password">Enter admin password: </label>
+        <input type="password" name="password" placeholder="Password">
+      </div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    {% if repeat == True %}
+      <p>The email address provided is already being used.</p>
+    {% endif %}
+    </body>
+</html>

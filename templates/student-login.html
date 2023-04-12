@@ -4,37 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Login</title>
 
     <!-- Importing Inter Font -->
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   </head>
   <body>
-    <h1>Admin Sign Up</h1>
+    <h1>Student Login</h1>
 
-    <form action="/" method="POST" id="login">
-      <div id="name">
-        <label for="name">Enter your full name: </label>
-        <input type="text" name="name" placeholder="Teddy Dong">
-      </div>
-
+    <form action="/student-login" method="POST" id="login">
       <div id="email">
-        <label for="email">Enter admin email: </label>
+        <label for="email">School email: </label>
         <input type="text" name="email" placeholder="Email Address">
       </div>
 
       <div id="password">
-        <label for="password">Enter admin password: </label>
+        <label for="password">Student ID number: </label>
         <input type="password" name="password" placeholder="Password">
       </div>
 
-      <button type="submit">Sign Up</button>
+      <button type="submit">Login</button>
     </form>
 
-    <a href="/login">Login</a>
+    <a href="/student-signup">Sign Up</a>
 
-    {% if repeat == True %}
-      <p>The email address provided is already being used.</p>
+    {% if incorrect == True %}
+      <p>The provided credentials are incorrect.</p>
     {% endif %}
-    </body>
+  </body>
 </html>
