@@ -116,6 +116,12 @@ def grade_leaderboard():
     return leaderboard
   else:
     return render_template('grade-leaderboard.html')
+  
+# Student Leaderboard
+@app.route('/student-leaderboard')
+def student_leaderboard():
+  student_leaderboard = get_student_leaderboard()[0:10]
+  return render_template('student-leaderboard.html', leaderboard=student_leaderboard)
 
 ##############################################################
 ####################### Helper Methods #######################
@@ -156,6 +162,16 @@ def get_grade_leaderboard(grade):
         grade_students.append([student['name'], student['points']])
     grade_students.sort(key=sort_second, reverse=True)
     return grade_students
+  
+def get_student_leaderboard():
+  with open('students.json', 'r+') as file:
+    file_data = json.load(file)
+    student_data = file_data['users']
+    student_leaderboard = []
+    for student in student_data:
+      student_leaderboard.append([student['name'], student['points']])
+    student_leaderboard.sort(key=sort_second, reverse=True)
+    return student_leaderboard
         
 def sort_second(val):
   return val[1]
