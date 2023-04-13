@@ -202,7 +202,14 @@ def reset_student_leaderboard():
     with open('students.json', 'w') as file:
       json.dump(file_data, file)
   return redirect('/admin-home')
-      
+
+# All Events Screen for Admin
+@app.route('/all-events')
+def all_events():
+  past_events = get_events()[0]
+  upcoming_events = get_events()[1]
+  events = past_events + upcoming_events
+  return render_template('all-events.html', events=events)
 
 ##############################################################
 ####################### Helper Methods #######################
