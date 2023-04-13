@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Event</title>
+  </head>
+  <body>
+    <form action="/add-event" method="POST">
+      <div class="event-name">
+        <label for="event-name">Event Name: </label>
+        <input type="text" name="event-name">
+      </div>
+      
+      <div class="event-description">
+        <label for="event-description">Event Description: </label><br>
+        <textarea name="event-description" cols="30" rows="10"></textarea>
+      </div>
+      
+      <div class="event-date">
+        <label for="event-date">Event Date: </label>
+        <input type="date" name="event-date">
+      </div>
+
+      <button type="submit">Add Event</button>
+    </form>
+  </body>
+</html>

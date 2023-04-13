@@ -1,5 +1,14 @@
 {
-  "events": [
-    
-  ]
+    "events": [
+        {
+            "name": "Football Match",
+            "description": "Hello",
+            "date": "2023-04-21"
+        },
+        {
+            "name": "Cricket Match",
+            "description": "Another thing",
+            "date": "2023-04-02"
+        }
+    ]
 }

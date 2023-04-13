@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 import json
+import datetime
 
 app = Flask(
   __name__,
@@ -123,14 +124,37 @@ def student_leaderboard():
   student_leaderboard = get_student_leaderboard()[0:10]
   return render_template('student-leaderboard.html', leaderboard=student_leaderboard)
 
+# Add Event for Admin
+@app.route('/add-event', methods=['POST', 'GET'])
+def add_event():
+  if (request.method == 'POST'):
+    event_data = {'name': request.form['event-name'],
+                  'description': request.form['event-description'],
+                  'date': request.form['event-date']}
+    write_json(event_data, filename='events.json', start='events')
+  return render_template('add-event.html')
+
+# Past Events Screen
+@app.route('/past-events', methods=['POST', 'GET'])
+def past_events():
+  past_events = get_events()[0]
+  return render_template('past-events.html', events=past_events)
+
+# Upcoming Events Screen
+@app.route('/upcoming-events')
+def upcoming_events():
+  upcoming_events = get_events()[1]
+  return render_template('upcoming-events.html', events=upcoming_events)
+  
+
 ##############################################################
 ####################### Helper Methods #######################
 ##############################################################
   
-def write_json(new_data, filename='admin.json'):
+def write_json(new_data, filename='admin.json', start='users'):
   with open(filename, 'r+') as file:
     file_data = json.load(file)
-    file_data['users'].append(new_data)
+    file_data[start].append(new_data)
     file.seek(0)
     json.dump(file_data, file, indent=4)
     
@@ -172,6 +196,21 @@ def get_student_leaderboard():
       student_leaderboard.append([student['name'], student['points']])
     student_leaderboard.sort(key=sort_second, reverse=True)
     return student_leaderboard
+  
+def get_events():
+  with open('events.json', 'r+') as file:
+    file_data = json.load(file)
+    event_data = file_data['events']
+    past_events = []
+    upcoming_events = []
+    for event in event_data:
+      event_date = datetime.datetime.strptime(event['date'], '%Y-%m-%d')
+      today = datetime.datetime.today()
+      if (event_date > today):
+        upcoming_events.append(event)
+      else:
+        past_events.append(event)
+    return [past_events, upcoming_events]
         
 def sort_second(val):
   return val[1]
