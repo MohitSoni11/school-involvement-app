@@ -156,6 +156,14 @@ def upcoming_events():
   upcoming_events = get_events()[1]
   return render_template('upcoming-events.html', events=upcoming_events)
 
+# All Events Screen for Admin
+@app.route('/all-events')
+def all_events():
+  past_events = get_events()[0]
+  upcoming_events = get_events()[1]
+  events = past_events + upcoming_events
+  return render_template('all-events.html', events=events)
+
 # Quarter Winner Screen
 @app.route('/quarter-winner')
 def quarter_winner():
@@ -202,14 +210,6 @@ def reset_student_leaderboard():
     with open('students.json', 'w') as file:
       json.dump(file_data, file)
   return redirect('/admin-home')
-
-# All Events Screen for Admin
-@app.route('/all-events')
-def all_events():
-  past_events = get_events()[0]
-  upcoming_events = get_events()[1]
-  events = past_events + upcoming_events
-  return render_template('all-events.html', events=events)
 
 ##############################################################
 ####################### Helper Methods #######################
@@ -272,7 +272,7 @@ def get_events():
       today = datetime.datetime.today()
       if (event_date > today):
         upcoming_events.append(event)
-      elif (event_date > today - datetime.timedelta(days=10)):
+      elif (event_date > today - datetime.timedelta(days=14)):
         past_events.append(event)
     return [past_events, upcoming_events]
   
