@@ -211,6 +211,21 @@ def reset_student_leaderboard():
       json.dump(file_data, file)
   return redirect('/admin-home')
 
+# End of Quarter Report
+@app.route('/report')
+def report():
+  today = datetime.date.today()
+  quarter_start = datetime.date(today.year, 3 * get_quarter(today.month) - 2, 1)
+  quarter_end = datetime.date(today.year, 3 * get_quarter(today.month), monthrange(today.year, 3 * get_quarter(today.month))[1])
+  days_left = 0
+  if (today == quarter_start or today==today):
+    data = [points_per_student('9'), points_per_student('10'), points_per_student('11'), points_per_student('12')]
+    return render_template('report.html', days_left=days_left, data=data)
+  else:
+    days_left = (quarter_end - today).days
+    return render_template('report.html', days_left=days_left, data=[])
+
+
 ##############################################################
 ####################### Helper Methods #######################
 ##############################################################
@@ -304,6 +319,18 @@ def choose_winners():
       elif (student['grade'] == '12'):
         seniors.append(student)
     return [random.choice(freshman), random.choice(sophomores), random.choice(juniors), random.choice(seniors)]
+  
+def points_per_student(grade):
+  with open('students.json', 'r+') as file:
+    file_data = json.load(file)
+    student_data = file_data['users']
+    total_points = 0
+    total_students = 0
+    for student in student_data:
+      if (student['grade'] == grade):
+        total_students += 1
+        total_points += student['points']
+    return total_points / total_students
 
 def get_quarter(month):
   return (month - 1) // 3 + 1
