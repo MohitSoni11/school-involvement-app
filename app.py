@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect
 import json
 import datetime
+from calendar import monthrange
+import random
 
 app = Flask(
   __name__,
@@ -153,7 +155,27 @@ def past_events():
 def upcoming_events():
   upcoming_events = get_events()[1]
   return render_template('upcoming-events.html', events=upcoming_events)
-  
+
+# Quarter Winner Screen
+@app.route('/quarter-winner')
+def quarter_winner():
+  today = datetime.date.today()
+  quarter_start = datetime.date(today.year, 3 * get_quarter(today.month) - 2, 1)
+  quarter_end = datetime.date(today.year, 3 * get_quarter(today.month), monthrange(today.year, 3 * get_quarter(today.month))[1])
+  days_left = 0
+  if (today == quarter_start):
+    new_winners = choose_winners()
+    with open('winners.json', 'r+') as file:
+      file_data = json.load(file)
+      file_data['winners'] = new_winners
+    with open('winners.json', 'w') as file:
+      json.dump(file_data, file)
+  else:
+    days_left = (quarter_end - today).days
+  with open('winners.json', 'r+') as file:
+    file_data = json.load(file)
+    winners = file_data['winners']
+  return render_template('quarter-winner.html', winners=winners, days_left=days_left)
 
 ##############################################################
 ####################### Helper Methods #######################
@@ -229,7 +251,29 @@ def add_points(email, password, points_increase):
         student['points'] += points_increase
     with open('students.json', 'w') as file:
       json.dump(file_data, file)
-        
+      
+def choose_winners():
+  with open('students.json', 'r+') as file:
+    file_data = json.load(file)
+    student_data = file_data['users']
+    freshman = []
+    sophomores = []
+    juniors = []
+    seniors = []
+    for student in student_data:
+      if (student['grade'] == '9'):
+        freshman.append(student)
+      elif (student['grade'] == '10'):
+        sophomores.append(student)
+      elif (student['grade'] == '11'):
+        juniors.append(student)
+      elif (student['grade'] == '12'):
+        seniors.append(student)
+    return [random.choice(freshman), random.choice(sophomores), random.choice(juniors), random.choice(seniors)]
+
+def get_quarter(month):
+  return (month - 1) // 3 + 1
+
 def sort_second(val):
   return val[1]
     
