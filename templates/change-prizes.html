@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Prizes</title>
+  </head>
+  <body>
+    <h2>Add Prize</h2>
+    <form action="/add-prize" method="POST">
+      <div class="prize">
+        <label for="prize">Prize: </label>
+        <input type="text" name="prize">
+      </div>
+      
+      <div class="points">
+        <label for="points">Prize Points Threshold: </label>
+        <input type="number" name="points">
+      </div>
+
+      <div class="category">
+        <label for="category">Prize Category: </label>
+        <select name="category">
+          <option value="school">School Reward</option>
+          <option value="food">Food Reward</option>
+          <option value="spirit">School Spirit Item</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <h2>Replace Existing Prize</h2>
+    <form action="/replace-prize" method="POST">
+      <div class="original-prize">
+        <label for="original-prize">Original Prize: </label>
+        <input type="text" name="original-prize">
+      </div>
+
+      <div class="new-prize">
+        <label for="new-prize">New Prize: </label>
+        <input type="text" name="new-prize">
+      </div>
+      
+      <div class="points">
+        <label for="points">Prize Points Threshold: </label>
+        <input type="number" name="points">
+      </div>
+
+      <div class="category">
+        <label for="category">Prize Category: </label>
+        <select name="category">
+          <option value="school">School Reward</option>
+          <option value="food">Food Reward</option>
+          <option value="spirit">School Spirit Item</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

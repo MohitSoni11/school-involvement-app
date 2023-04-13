@@ -225,6 +225,52 @@ def report():
     days_left = (quarter_end - today).days
     return render_template('report.html', days_left=days_left, data=[])
 
+# Prizes Screen
+@app.route('/prizes')
+def prizes():
+  with open('prizes.json', 'r+') as file:
+    file_data = json.load(file)
+    prizes_data = file_data['prizes']
+    return render_template('prizes.html', prizes=prizes_data)
+  
+# Changing Prizes Screen
+@app.route('/change-prizes')
+def change_prizes():
+  return render_template('change-prizes.html')
+
+# Changing Prizes POST Request
+@app.route('/add-prize', methods=['POST'])
+def add_prize():
+  data = {
+    'prize': request.form['prize'],
+    'points': request.form['points'],
+    'category': request.form['category']
+  }
+  
+  write_json(data, filename='prizes.json', start='prizes')
+  return redirect('/admin-home')
+
+@app.route('/replace-prize', methods=['POST'])
+def modify_prize():
+  original_prize = request.form['original-prize']
+  new_data = {
+    'prize': request.form['new-prize'],
+    'points': request.form['points'],
+    'category': request.form['category']
+  }
+  
+  with open('prizes.json', 'r+') as file:
+    file_data = json.load(file)
+    prizes_data = file_data['prizes']
+    for prize in prizes_data:
+      if (prize['prize'] == original_prize):
+        prize['prize'] = request.form['new-prize']
+        prize['points'] = request.form['points']
+        prize['category'] = request.form['category']
+    with open('prizes.json', 'w') as file:
+      json.dump(file_data, file)
+  
+  return redirect('/admin-home')
 
 ##############################################################
 ####################### Helper Methods #######################
