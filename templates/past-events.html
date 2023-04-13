@@ -11,11 +11,14 @@
       {% for i in range(events|length) %}
         <div>
           <p>{{events[i]}}</p>
-          <select name="events{{i}}">
-            <option value="yes">Participated</option>
-            <option value="no">Did Not Participate</option>
-            <option value="no">Already Submitted Previously</option>
-          </select>
+          <input type="radio" id="participated" name="events{{i}}" value="yes">
+          <label for="participated">Participated</label><br>
+
+          <input type="radio" id="not-participated" name="events{{i}}" value="no">
+          <label for="not-participated">Did Not Participate</label><br>
+
+          <input type="radio" id="already-submitted" name="events{{i}}" value="no">
+          <label for="already-submitted">Already Submitted Previously</label><br>
         </div>
       {% endfor %}
       <button type="submit">Submit</button>
