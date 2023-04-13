@@ -1,11 +1,1 @@
-{
-    "users": [
-        {
-            "email": "s-msoni@lwsd.org",
-            "password": "9999",
-            "name": "Teddy",
-            "grade": "12",
-            "points": 0
-        }
-    ]
-}
+{"users": [{"email": "s-msoni@lwsd.org", "password": "9999", "name": "Teddy", "grade": "12", "points": 140}]}

@@ -72,8 +72,6 @@ def student_login():
       student_password = password
       global student_name
       student_name = name
-      global student_points
-      student_points = get_student_info(student_email, student_password)[0]
       global student_grade
       student_grade = get_student_info(student_email, student_password)[1]
       return redirect('/student-home')
@@ -103,9 +101,10 @@ def student_signUp():
 # Student Home Screen
 @app.route('/student-home')
 def student_home():
+  points = get_student_info(student_email, student_password)[0]
   return render_template('student-home.html', 
                          name=student_name, 
-                         points=student_points,
+                         points=points,
                          grade=student_grade)
   
 # Grade Leaderboard
@@ -137,8 +136,17 @@ def add_event():
 # Past Events Screen
 @app.route('/past-events', methods=['POST', 'GET'])
 def past_events():
-  past_events = get_events()[0]
-  return render_template('past-events.html', events=past_events)
+  if (request.method == 'POST'):
+    event_number = len(get_events()[0])
+    points_increase = 0
+    for i in range(event_number):
+      if (request.form['events' + str(i)] == 'yes'):
+        points_increase += 20
+    add_points(student_email, student_password, points_increase)
+    return redirect('/student-home')
+  else:
+    past_events = get_events()[0]
+    return render_template('past-events.html', events=past_events)
 
 # Upcoming Events Screen
 @app.route('/upcoming-events')
@@ -208,9 +216,19 @@ def get_events():
       today = datetime.datetime.today()
       if (event_date > today):
         upcoming_events.append(event)
-      else:
+      elif (event_date > today - datetime.timedelta(days=10)):
         past_events.append(event)
     return [past_events, upcoming_events]
+  
+def add_points(email, password, points_increase):
+  with open('students.json') as file:
+    file_data = json.load(file)
+    students_data = file_data['users']
+    for student in students_data:
+      if (student['email'] == email and student['password'] == password):
+        student['points'] += points_increase
+    with open('students.json', 'w') as file:
+      json.dump(file_data, file)
         
 def sort_second(val):
   return val[1]

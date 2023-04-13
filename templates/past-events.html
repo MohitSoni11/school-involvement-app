@@ -7,6 +7,18 @@
     <title>Past Events</title>
   </head>
   <body>
-    {{events}}
+    <form action="/past-events" method="POST">
+      {% for i in range(events|length) %}
+        <div>
+          <p>{{events[i]}}</p>
+          <select name="events{{i}}">
+            <option value="yes">Participated</option>
+            <option value="no">Did Not Participate</option>
+            <option value="no">Already Submitted Previously</option>
+          </select>
+        </div>
+      {% endfor %}
+      <button type="submit">Submit</button>
+    </form>
   </body>
 </html>
