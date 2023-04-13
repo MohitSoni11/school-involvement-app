@@ -177,6 +177,33 @@ def quarter_winner():
     winners = file_data['winners']
   return render_template('quarter-winner.html', winners=winners, days_left=days_left)
 
+# Resetting Grade Leaderboard
+@app.route('/reset-grade-leaderboard', methods=['POST'])
+def reset_grade_leaderboard():
+  grade = request.form['grade']
+  with open('students.json', 'r+') as file:
+    file_data = json.load(file)
+    students_data = file_data['users']
+    for student in students_data:
+      if (student['grade'] == grade):
+        student['points'] = 0
+    with open('students.json', 'w') as file:
+      json.dump(file_data, file)
+  return redirect('/admin-home')
+
+# Resetting Student Leaderboard
+@app.route('/reset-student-leaderboard', methods=['GET'])
+def reset_student_leaderboard():
+  with open('students.json', 'r+') as file:
+    file_data = json.load(file)
+    students_data = file_data['users']
+    for student in students_data:
+      student['points'] = 0
+    with open('students.json', 'w') as file:
+      json.dump(file_data, file)
+  return redirect('/admin-home')
+      
+
 ##############################################################
 ####################### Helper Methods #######################
 ##############################################################

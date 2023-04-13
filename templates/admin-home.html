@@ -20,8 +20,18 @@
     <ul>
       <li><a href="/add-event">Add Event</a></li>
       <li><a href="/change-prizes">Change Prizes</a></li>
-      <li><a href="/reset-grade-leaderboard">Reset Grade Leaderboard</a></li>
       <li><a href="/reset-student-leaderboard">Reset Student Leaderboard</a></li>
     </ul>
+
+    <p>Reset Grade Leaderboard</p>
+    <form action="/reset-grade-leaderboard" method="POST">
+      <select name="grade">
+        <option value="9">9th</option>
+        <option value="10">10th</option>
+        <option value="11">11th</option>
+        <option value="12">12th</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
   </body>
 </html>
