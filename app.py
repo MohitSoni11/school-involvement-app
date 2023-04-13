@@ -218,7 +218,7 @@ def report():
   quarter_start = datetime.date(today.year, 3 * get_quarter(today.month) - 2, 1)
   quarter_end = datetime.date(today.year, 3 * get_quarter(today.month), monthrange(today.year, 3 * get_quarter(today.month))[1])
   days_left = 0
-  if (today == quarter_start or today==today):
+  if (today == quarter_start):
     data = [points_per_student('9'), points_per_student('10'), points_per_student('11'), points_per_student('12')]
     return render_template('report.html', days_left=days_left, data=data)
   else:
