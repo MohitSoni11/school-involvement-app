@@ -167,6 +167,7 @@ def add_event():
     
     # Adding new event to events.json file
     write_json(event_data, filename='data/events.json', start='events')
+    return redirect('/admin-home')
   
   # GET request for rendering add-event page
   else:
@@ -218,7 +219,7 @@ def quarter_winner():
   days_left = 0
   
   # If today is the quarter's start, choose a random winner and update the page
-  if (today == quarter_start):
+  if (today == quarter_start or today==today):
     new_winners = choose_winners()
     with open('data/winners.json', 'r+') as file:
       file_data = json.load(file)

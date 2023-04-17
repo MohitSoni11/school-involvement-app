@@ -1,5 +1,19 @@
 {
     "events": [
-        
+        {
+            "name": "Cricket match",
+            "description": "Somtehing",
+            "date": "2023-04-21"
+        },
+        {
+            "name": "Cricket match",
+            "description": "Somtehing",
+            "date": "2023-04-21"
+        },
+        {
+            "name": "Football Match",
+            "description": "This time we are going to do stuff.",
+            "date": "2023-04-29"
+        }
     ]
 }
