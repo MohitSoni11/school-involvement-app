@@ -7,6 +7,7 @@
     <title>Grade Leaderboard</title>
   </head>
   <body>
+    <h1>Student Leaderboard</h1>
     <form action="/grade-leaderboard" method="POST">
       <label for="grade-selection">Choose grade: </label>
       <select name="grade-selection">
@@ -18,5 +19,11 @@
 
       <button type="submit">Submit</button>
     </form>
+
+    <ol style="font-size: 20px">
+      {% for student in leaderboard %}
+        <li style="margin-bottom: 20px">{{student[0]}}: {{student[1]}} points</h3>
+      {% endfor %}
+    </ol>
   </body>
 </html>

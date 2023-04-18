@@ -143,7 +143,7 @@ def grade_leaderboard():
     
     # Getting the top 10 students for each grade
     leaderboard = get_grade_leaderboard(grade)[0:10]
-    return leaderboard
+    return render_template('grade-leaderboard.html', leaderboard=leaderboard)
   
   # GET request for grade leaderboard page
   else:
