@@ -7,10 +7,14 @@
     <title>Past Events</title>
   </head>
   <body>
+    <h1>Past Events</h1>
     <form action="/past-events" method="POST">
       {% for i in range(events|length) %}
+        <hr>
         <div>
-          <p>{{events[i]}}</p>
+          <h2>{{events[i]['name']}}</h2>
+          <h3>{{events[i]['date']}}</h3>
+          <p>{{events[i]['description']}}</p>
           <input type="radio" id="participated" name="events{{i}}" value="yes">
           <label for="participated">Participated</label><br>
 
