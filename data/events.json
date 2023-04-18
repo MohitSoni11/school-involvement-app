@@ -1,19 +1,16 @@
 {
     "events": [
         {
-            "name": "Cricket match",
-            "description": "Somtehing",
-            "date": "2023-04-21"
-        },
-        {
-            "name": "Cricket match",
-            "description": "Somtehing",
-            "date": "2023-04-21"
+            "name": "Cricket Match",
+            "description": "Something",
+            "date": "2023-04-13",
+            "points": "15"
         },
         {
             "name": "Football Match",
-            "description": "This time we are going to do stuff.",
-            "date": "2023-04-29"
+            "description": "Have fun!",
+            "date": "2023-04-14",
+            "points": "30"
         }
     ]
 }

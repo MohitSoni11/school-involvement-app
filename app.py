@@ -163,7 +163,8 @@ def add_event():
   if (request.method == 'POST'):
     event_data = {'name': request.form['event-name'],
                   'description': request.form['event-description'],
-                  'date': request.form['event-date']}
+                  'date': request.form['event-date'],
+                  'points': request.form['event-points']}
     
     # Adding new event to events.json file
     write_json(event_data, filename='data/events.json', start='events')
@@ -183,8 +184,9 @@ def past_events():
     
     # Adding 20 points for each event that the student attended
     for i in range(event_number):
+      event_point_increase = int(get_events()[0][i][1])
       if (request.form['events' + str(i)] == 'yes'):
-        points_increase += 20
+        points_increase += event_point_increase
     add_points(student_email, student_password, points_increase)
     return redirect('/student-home')
   
@@ -219,7 +221,7 @@ def quarter_winner():
   days_left = 0
   
   # If today is the quarter's start, choose a random winner and update the page
-  if (today == quarter_start or today==today):
+  if (today == quarter_start):
     new_winners = choose_winners()
     with open('data/winners.json', 'r+') as file:
       file_data = json.load(file)
@@ -409,7 +411,7 @@ def get_events():
   '''
   Separates all events into past events and upcoming events based on today's date
   Note that if any event happened more than 2 weeks before today, it will not be returned
-  Returns the past events and upcoming events
+  Returns the past events, their specific points, and upcoming events
   '''
   with open('data/events.json', 'r+') as file:
     file_data = json.load(file)
@@ -418,11 +420,12 @@ def get_events():
     upcoming_events = []
     for event in event_data:
       event_date = datetime.datetime.strptime(event['date'], '%Y-%m-%d')
+      event_points = event['points']
       today = datetime.datetime.today()
       if (event_date > today):
-        upcoming_events.append(event)
+        upcoming_events.append([event, event_points])
       elif (event_date > today - datetime.timedelta(days=14)):
-        past_events.append(event)
+        past_events.append([event, event_points])
     return [past_events, upcoming_events]
   
 def add_points(email, password, points_increase):
