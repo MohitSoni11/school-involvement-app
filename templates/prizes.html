@@ -7,6 +7,11 @@
     <title>Prizes</title>
   </head>
   <body>
-    {{prizes}}
+    <h1>Prizes</h1>
+    {% for prize in prizes %}
+      <hr>
+      <h2>{{prize['prize']}}</h2>
+      <h3>Points: {{prize['points']}}</h3>
+    {% endfor %}
   </body>
 </html>

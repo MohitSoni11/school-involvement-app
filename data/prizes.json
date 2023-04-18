@@ -1,1 +1,9 @@
-{"prizes": []}
+{
+    "prizes": [
+        {
+            "prize": "T-Shirts",
+            "points": "100",
+            "category": "spirit"
+        }
+    ]
+}
