@@ -1,6 +1,1 @@
-{
-  "users": [
-    {"email": "mohitksoni@outlook.com", 
-    "password": "1234", "name": "Mohit Soni", 
-    "grade": "9", "points": 160
-    }, {"email": "teddyDong@outlook.com", "password": "1234", "name": "Teddy Dong", "grade": "10", "points": 120}, {"email": "momoSoni@outlook.com", "password": "1234", "name": "Momo Soni", "grade": "11", "points": 0}, {"email": "sidPalla@outlook.com", "password": "1234", "name": "Sid Palla", "grade": "12", "points": 0}]}
+{"users": [{"email": "mohitksoni@outlook.com", "password": "1234", "name": "Mohit Soni", "grade": "9", "points": 0}, {"email": "teddyDong@outlook.com", "password": "1234", "name": "Teddy Dong", "grade": "10", "points": 0}, {"email": "momoSoni@outlook.com", "password": "1234", "name": "Momo Soni", "grade": "11", "points": 0}, {"email": "sidPalla@outlook.com", "password": "1234", "name": "Sid Palla", "grade": "12", "points": 0}]}

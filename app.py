@@ -287,7 +287,7 @@ def report():
   days_left = 0
   
   # If today is the start of the quarter, generate a new report of points/student in each grade
-  if (today == quarter_start):
+  if (today == quarter_start or today==today):
     data = [points_per_student('9'), points_per_student('10'), points_per_student('11'), points_per_student('12')]
     return render_template('report.html', days_left=days_left, data=data)
   
