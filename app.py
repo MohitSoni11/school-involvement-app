@@ -287,14 +287,14 @@ def report():
   days_left = 0
   
   # If today is the start of the quarter, generate a new report of points/student in each grade
-  if (today == quarter_start or today==today):
+  if (today == quarter_start):
     data = [points_per_student('9'), points_per_student('10'), points_per_student('11'), points_per_student('12')]
-    return render_template('report.html', days_left=days_left, data=data)
+    return render_template('report.html', days_left=days_left, data=data, end=True)
   
   # Else display the number of days until the end of the quarter
   else:
     days_left = (quarter_end - today).days
-    return render_template('report.html', days_left=days_left, data=[])
+    return render_template('report.html', days_left=days_left, data=[], end=False)
 
 # Prizes Screen
 @app.route('/prizes')

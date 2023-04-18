@@ -7,7 +7,16 @@
     <title>Quarterly Report</title>
   </head>
   <body>
-    <p>Days until the end of the quarter: {{days_left}}</p>
-    <p>{{data}}</p>
+    <h1>Quarterly Report</h1>
+    <hr>
+    <hr>
+
+    {% if end %}
+      <h3>9th: {{data[0]}} points/student</h3>
+      <h3>10th: {{data[1]}} points/student</h3>
+      <h3>11th: {{data[2]}} points/student</h3>
+      <h3>12th: {{data[3]}} points/student</h3>
+    {% endif %}
+    <h2>Days until the end of the quarter: {{days_left}}</h2>
   </body>
 </html>
