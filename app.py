@@ -193,14 +193,20 @@ def past_events():
   # GET request displaying events that already happened (past events)
   else:
     past_events = get_events()[0]
-    return render_template('past-events.html', events=past_events)
+    events = []
+    for event in past_events:
+      events.append(event[0])
+    return render_template('past-events.html', events=events)
 
 # Upcoming Events Screen
 @app.route('/upcoming-events')
 def upcoming_events():
   # GET request displaying upcoming events (in the future)
   upcoming_events = get_events()[1]
-  return render_template('upcoming-events.html', events=upcoming_events)
+  events = []
+  for event in upcoming_events:
+    events.append(event[0])
+  return render_template('upcoming-events.html', events=events)
 
 # All Events Screen for Admin
 @app.route('/all-events')
@@ -209,7 +215,10 @@ def all_events():
   past_events = get_events()[0]
   upcoming_events = get_events()[1]
   events = past_events + upcoming_events
-  return render_template('all-events.html', events=events)
+  all_events = []
+  for event in events:
+    all_events.append(event[0])
+  return render_template('all-events.html', events=all_events)
 
 # Quarter Winner Screen
 @app.route('/quarter-winner')
