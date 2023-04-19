@@ -14,6 +14,9 @@
     <h1>Quarterly Report</h1>
     <hr>
     <hr>
+    {% if not(end) %}
+      <a href="/forced-report"><button>Generate Report Now</button></a>
+    {% endif %}
 
     {% if end %}
       <h3>9th: {{data[0]}} points/student</h3>

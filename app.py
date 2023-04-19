@@ -129,10 +129,16 @@ def student_signUp():
 def student_home():
   # Rendering student home screen
   points = get_student_info(student_email, student_password)[0]
-  return render_template('student-home.html', 
-                         name=student_name, 
-                         points=points,
-                         grade=student_grade)
+  
+  # Show prizes by getting them from the prizes.json file
+  with open('data/prizes.json', 'r+') as file:
+    file_data = json.load(file)
+    prizes_data = file_data['prizes']
+    return render_template('student-home.html', 
+                           prizes=prizes_data,
+                           name=student_name,
+                           points=points,
+                           grade=student_grade)
   
 # Grade Leaderboard
 @app.route('/grade-leaderboard', methods=['POST', 'GET'])
@@ -296,14 +302,17 @@ def report():
     days_left = (quarter_end - today).days
     return render_template('report.html', days_left=days_left, data=[], end=False)
 
-# Prizes Screen
-@app.route('/prizes')
-def prizes():
-  # Show prizes by getting them from the prizes.json file
-  with open('data/prizes.json', 'r+') as file:
-    file_data = json.load(file)
-    prizes_data = file_data['prizes']
-    return render_template('prizes.html', prizes=prizes_data)
+# Forced Students Report
+@app.route('/forced-report')
+def forced_report():
+  # Get the quarter start and end date
+  today = datetime.date.today()
+  quarter_start = datetime.date(today.year, 3 * get_quarter(today.month) - 2, 1)
+  quarter_end = datetime.date(today.year, 3 * get_quarter(today.month), monthrange(today.year, 3 * get_quarter(today.month))[1])
+  days_left = (quarter_end - today).days
+  
+  data = [points_per_student('9'), points_per_student('10'), points_per_student('11'), points_per_student('12')]
+  return render_template('report.html', days_left=days_left, data=data, end=True)
   
 # Changing Prizes Screen
 @app.route('/change-prizes')
