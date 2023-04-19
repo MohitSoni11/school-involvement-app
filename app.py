@@ -69,7 +69,10 @@ def admin_signup():
 @app.route('/admin-home')
 def admin_home():
   # Simply returns the admin-home.html template with the user's name
-  return render_template('admin-home.html', name=user_name)
+  with open('data/prizes.json', 'r+') as file:
+    file_data = json.load(file)
+    prizes_data = file_data['prizes']
+    return render_template('admin-home.html', name=user_name, prizes=prizes_data)
 
 # Student Login Screen
 @app.route('/student-login', methods=['POST', 'GET'])
