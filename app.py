@@ -498,7 +498,7 @@ def points_per_student(grade):
       if (student['grade'] == grade):
         total_students += 1
         total_points += student['points']
-    return total_points / total_students
+    return round(total_points / total_students, 2)
 
 def get_quarter(month):
   '''
