@@ -4,6 +4,16 @@
             "prize": "T-Shirts",
             "points": "100",
             "category": "spirit"
+        },
+        {
+            "prize": "Homework Pass",
+            "points": "150",
+            "category": "school"
+        },
+        {
+            "prize": "Frozen Yogurt",
+            "points": "80",
+            "category": "food"
         }
     ]
 }

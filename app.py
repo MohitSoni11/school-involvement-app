@@ -4,6 +4,7 @@ import json
 import datetime
 from calendar import monthrange
 import random
+from pathlib import Path
 
 # Starting App
 app = Flask(
@@ -69,7 +70,7 @@ def admin_signup():
 @app.route('/admin-home')
 def admin_home():
   # Simply returns the admin-home.html template with the user's name
-  with open('data/prizes.json', 'r+') as file:
+  with open(Path('data/prizes.json').resolve(), 'r+') as file:
     file_data = json.load(file)
     prizes_data = file_data['prizes']
     return render_template('admin-home.html', name=user_name, prizes=prizes_data)
@@ -134,7 +135,7 @@ def student_home():
   points = get_student_info(student_email, student_password)[0]
   
   # Show prizes by getting them from the prizes.json file
-  with open('data/prizes.json', 'r+') as file:
+  with open(Path('data/prizes.json').resolve(), 'r+') as file:
     file_data = json.load(file)
     prizes_data = file_data['prizes']
     return render_template('student-home.html', 
@@ -241,17 +242,17 @@ def quarter_winner():
   # If today is the quarter's start, choose a random winner and update the page
   if (today == quarter_start):
     new_winners = choose_winners()
-    with open('data/winners.json', 'r+') as file:
+    with open(Path('data/winners.json').resolve(), 'r+') as file:
       file_data = json.load(file)
       file_data['winners'] = new_winners
-    with open('data/winners.json', 'w') as file:
+    with open(Path('data/winners.json').resolve(), 'w') as file:
       json.dump(file_data, file)
   
   # If today is not the quarter's start, don't choose another winner
   # Additionally display how many days until the quarter ends
   else:
     days_left = (quarter_end - today).days
-  with open('data/winners.json', 'r+') as file:
+  with open(Path('data/winners.json').resolve(), 'r+') as file:
     file_data = json.load(file)
     winners = file_data['winners']
   return render_template('quarter-winner.html', winners=winners, days_left=days_left)
@@ -263,13 +264,13 @@ def reset_grade_leaderboard():
   grade = request.form['grade']
   
   # Get all students in that grade and make their points = 0
-  with open('data/students.json', 'r+') as file:
+  with open(Path('data/students.json').resolve(), 'r+') as file:
     file_data = json.load(file)
     students_data = file_data['users']
     for student in students_data:
       if (student['grade'] == grade):
         student['points'] = 0
-    with open('data/students.json', 'w') as file:
+    with open(Path('data/students.json').resolve(), 'w') as file:
       json.dump(file_data, file)
   return redirect('/admin-home')
 
@@ -277,12 +278,12 @@ def reset_grade_leaderboard():
 @app.route('/reset-student-leaderboard', methods=['GET'])
 def reset_student_leaderboard():
   # Make all the students in the students.json file have points = 0
-  with open('data/students.json', 'r+') as file:
+  with open(Path('data/students.json').resolve(), 'r+') as file:
     file_data = json.load(file)
     students_data = file_data['users']
     for student in students_data:
       student['points'] = 0
-    with open('data/students.json', 'w') as file:
+    with open(Path('data/students.json').resolve(), 'w') as file:
       json.dump(file_data, file)
   return redirect('/admin-home')
 
@@ -348,7 +349,7 @@ def replace_prize():
   }
   
   # Replacing original prize with new prize in prizes.json file
-  with open('data/prizes.json', 'r+') as file:
+  with open(Path('data/prizes.json').resolve(), 'r+') as file:
     file_data = json.load(file)
     prizes_data = file_data['prizes']
     for prize in prizes_data:
@@ -356,7 +357,7 @@ def replace_prize():
         prize['prize'] = request.form['new-prize']
         prize['points'] = request.form['points']
         prize['category'] = request.form['category']
-    with open('data/prizes.json', 'w') as file:
+    with open(Path('data/prizes.json').resolve(), 'w') as file:
       json.dump(file_data, file)
   
   return redirect('/admin-home')
@@ -369,7 +370,7 @@ def write_json(new_data, filename='data/admin.json', start='users'):
   '''
   Opens a JSON file and adds a new value to it
   '''
-  with open(filename, 'r+') as file:
+  with open(Path(filename).resolve(), 'r+') as file:
     file_data = json.load(file)
     file_data[start].append(new_data)
     file.seek(0)
@@ -381,7 +382,7 @@ def check_json(email, password, filename='data/admin.json'):
   Returns the name of that user
   If the user is not found, the method will return an empty string
   '''
-  with open(filename, 'r+') as file:
+  with open(Path(filename).resolve(), 'r+') as file:
     file_data = json.load(file)
     user_data = file_data['users']
     for user in user_data:
@@ -393,7 +394,7 @@ def get_student_info(email, password):
   '''
   Returns the points and grade of a student based on their email and password
   '''
-  with open('data/students.json', 'r+') as file:
+  with open(Path('data/students.json').resolve(), 'r+') as file:
     file_data = json.load(file)
     student_data = file_data['users']
     for student in student_data:
@@ -405,7 +406,7 @@ def get_grade_leaderboard(grade):
   '''
   Returns the leaderboard (based on points) for a grade in decreasing order
   '''
-  with open('data/students.json', 'r+') as file:
+  with open(Path('data/students.json').resolve(), 'r+') as file:
     file_data = json.load(file)
     student_data = file_data['users']
     grade_students = []
@@ -419,7 +420,7 @@ def get_student_leaderboard():
   '''
   Returns the leaderboard (based on points) for whole school in decreasing order
   '''
-  with open('data/students.json', 'r+') as file:
+  with open(Path('data/students.json').resolve(), 'r+') as file:
     file_data = json.load(file)
     student_data = file_data['users']
     student_leaderboard = []
@@ -434,7 +435,7 @@ def get_events():
   Note that if any event happened more than 2 weeks before today, it will not be returned
   Returns the past events, their specific points, and upcoming events
   '''
-  with open('data/events.json', 'r+') as file:
+  with open(Path('data/events.json').resolve(), 'r+') as file:
     file_data = json.load(file)
     event_data = file_data['events']
     past_events = []
@@ -453,20 +454,20 @@ def add_points(email, password, points_increase):
   '''
   Adds points to a student's account in the students.json file using their email and password
   '''
-  with open('data/students.json') as file:
+  with open(Path('data/students.json').resolve()) as file:
     file_data = json.load(file)
     students_data = file_data['users']
     for student in students_data:
       if (student['email'] == email and student['password'] == password):
         student['points'] += points_increase
-    with open('data/students.json', 'w') as file:
+    with open(Path('data/students.json').resolve(), 'w') as file:
       json.dump(file_data, file)
 
 def choose_winners():
   '''
   Chooses and returns random winners from each grade no matter their point accumulation
   '''
-  with open('data/students.json', 'r+') as file:
+  with open(Path('data/students.json').resolve(), 'r+') as file:
     file_data = json.load(file)
     student_data = file_data['users']
     freshman = []
@@ -488,7 +489,7 @@ def points_per_student(grade):
   '''
   Returns the points per student value for a specific grade
   '''
-  with open('data/students.json', 'r+') as file:
+  with open(Path('data/students.json').resolve(), 'r+') as file:
     file_data = json.load(file)
     student_data = file_data['users']
     total_points = 0

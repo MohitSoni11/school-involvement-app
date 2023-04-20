@@ -1,1 +1,172 @@
-{"users": [{"email": "mohitksoni@outlook.com", "password": "1234", "name": "Mohit Soni", "grade": "9", "points": 120}, {"email": "teddyDong@outlook.com", "password": "1234", "name": "Teddy Dong", "grade": "10", "points": 0}, {"email": "momoSoni@outlook.com", "password": "1234", "name": "Momo Soni", "grade": "11", "points": 0}, {"email": "sidPalla@outlook.com", "password": "1234", "name": "Sid Palla", "grade": "12", "points": 0}]}
+{
+    "users": [
+        {
+            "email": "mohitksoni@outlook.com",
+            "password": "1234",
+            "name": "Mohit Soni",
+            "grade": "9",
+            "points": 0
+        },
+        {
+            "email": "teddyDong@outlook.com",
+            "password": "1234",
+            "name": "Teddy Dong",
+            "grade": "10",
+            "points": 0
+        },
+        {
+            "email": "momoSoni@outlook.com",
+            "password": "1234",
+            "name": "Momo Soni",
+            "grade": "11",
+            "points": 0
+        },
+        {
+            "email": "sidPalla@outlook.com",
+            "password": "1234",
+            "name": "Sid Palla",
+            "grade": "12",
+            "points": 0
+        },
+        {
+            "email": "gyandave@gmail.com",
+            "password": "10101010",
+            "name": "Gyan Dave",
+            "grade": "9",
+            "points": 30
+        },
+        {
+            "email": "aaryanbondre@gmail.com",
+            "password": "12345123",
+            "name": "Aaryan Bondre",
+            "grade": "9",
+            "points": 60
+        },
+        {
+            "email": "pranavyerramilli@gmail.com",
+            "password": "22222222",
+            "name": "Pranav Yerramilli",
+            "grade": "9",
+            "points": 80
+        },
+        {
+            "email": "aaravkhanna@gmail.com",
+            "password": "33333333",
+            "name": "Aarav Khanna",
+            "grade": "9",
+            "points": 40
+        },
+        {
+            "email": "dhruvdeepak@gmail.com",
+            "password": "55555555",
+            "name": "Dhruv Deepak",
+            "grade": "9",
+            "points": 100
+        },
+        {
+            "email": "tanjalshukla@gmail.com",
+            "password": "44444444",
+            "name": "Tanjal Shukla",
+            "grade": "10",
+            "points": 120
+        },
+        {
+            "email": "alexsmith@gmail.com",
+            "password": "66666666",
+            "name": "Alex Smith",
+            "grade": "10",
+            "points": 80
+        },
+        {
+            "email": "drakelondon@gmail.com",
+            "password": "77777777",
+            "name": "Drake London",
+            "grade": "10",
+            "points": 80
+        },
+        {
+            "email": "genosmith@gmail.com",
+            "password": "99999999",
+            "name": "Geno Smith",
+            "grade": "10",
+            "points": 50
+        },
+        {
+            "email": "dkmetcalf@gmail.com",
+            "password": "19191919",
+            "name": "DK Metcalf",
+            "grade": "10",
+            "points": 30
+        },
+        {
+            "email": "stephcurry@gmail.com",
+            "password": "13131313",
+            "name": "Steph Curry",
+            "grade": "11",
+            "points": 120
+        },
+        {
+            "email": "traeyoung@gmail.com",
+            "password": "14141414",
+            "name": "Trae Young",
+            "grade": "11",
+            "points": 40
+        },
+        {
+            "email": "duransraman@gmail.com",
+            "password": "15151515",
+            "name": "Durans Raman",
+            "grade": "11",
+            "points": 100
+        },
+        {
+            "email": "yashchris@gmail.com",
+            "password": "16161616",
+            "name": "Yash Chris",
+            "grade": "11",
+            "points": 110
+        },
+        {
+            "email": "robertanderson@gmail.com",
+            "password": "17171717",
+            "name": "Robert Anderson",
+            "grade": "11",
+            "points": 40
+        },
+        {
+            "email": "teddydong@gmail.com",
+            "password": "12345678",
+            "name": "Teddy Dong",
+            "grade": "12",
+            "points": 120
+        },
+        {
+            "email": "bobjohnson@gmail.com",
+            "password": "12121212",
+            "name": "Bob Johnson",
+            "grade": "12",
+            "points": 140
+        },
+        {
+            "email": "lebronjames@gmail.com",
+            "password": "00000000",
+            "name": "Lebron James",
+            "grade": "12",
+            "points": 80
+        },
+        {
+            "email": "aymaanhussain@gmail.com",
+            "password": "11111111",
+            "name": "Aymaan Hussain",
+            "grade": "12",
+            "points": 40
+        },
+        {
+            "email": "sidpallavola@gmail.com",
+            "password": "12341234",
+            "name": "Sid Pallavola",
+            "grade": "12",
+            "points": 110
+        }
+    ]
+}

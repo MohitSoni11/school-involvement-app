@@ -2,27 +2,87 @@
     "events": [
         {
             "name": "Cricket Match",
-            "description": "Something",
+            "description": "Come and support our cricket team by bringing posters and flyers during their match against the Warriors!",
             "date": "2023-04-13",
             "points": "15"
         },
         {
-            "name": "Football Match",
-            "description": "Have fun!",
+            "name": "Soccer Match",
+            "description": "Come and suppoer our soccer team during their game against the Wolves! Make sure to be loud!",
             "date": "2023-04-14",
             "points": "30"
         },
         {
-            "name": "Cricket Match",
-            "description": "2lksdjflsdkjf",
+            "name": "Halloween Night",
+            "description": "Come to school at 5 PM - 9PM to enjoy a halloween night! There will be movies, a costume contest, and more!",
             "date": "2023-04-13",
-            "points": "100"
+            "points": "20"
         },
         {
-            "name": "Some Match Bruh",
-            "description": "Bruh",
+            "name": "Movie Night",
+            "description": "We all love movies. Come to school a 6 PM where we will have a ton of different movies playing in each of the classrooms. Choose which one you want to watch.",
             "date": "2023-04-20",
-            "points": "30"
+            "points": "20"
+        },
+        {
+            "name": "Boys Tennis Match",
+            "description": "Come to school and support our boys tennis team against the Kraken!",
+            "date": "2023-04-16",
+            "points": "10"
+        },
+        {
+            "name": "Boys Basketball Game",
+            "description": "Come and support your varsity boys basketball team as they go up against the Sharks in the state semifinal!",
+            "date": "2023-04-15",
+            "points": "10"
+        },
+        {
+            "name": "Boys Swim Meet",
+            "description": "Our boys are excited for their quarterfinal matchup against the Mustangs! Come and support your school swim team!",
+            "date": "2023-04-07",
+            "points": "10"
+        },
+        {
+            "name": "Girls Badminton Match",
+            "description": "Help support our girl\u2019s badminton team by cheering for them at their match against the Sharks!",
+            "date": "2023-04-05",
+            "points": "10"
+        },
+        {
+            "name": "Boys Football Team",
+            "description": "Support our boy\u2019s football team in their match against the Dragons in the state final!",
+            "date": "2023-04-20",
+            "points": "10"
+        },
+        {
+            "name": "Food Fundraiser",
+            "description": "Come and our ASB Leadership group by buying food our students make! We promise the food will be out of this world!",
+            "date": "2023-04-03",
+            "points": "20"
+        },
+        {
+            "name": "Cancer Research Auction",
+            "description": "Join our auction where all proceeds will go towards cancer research at the University of Washington!",
+            "date": "2023-04-06",
+            "points": "20"
+        },
+        {
+            "name": "Game Night",
+            "description": "After school in room 222 come and join us for a couple of hours of absolute fun. Game include Monopoly, Sorry, and more!",
+            "date": "2023-04-12",
+            "points": "20"
+        },
+        {
+            "name": "School Picnic",
+            "description": "Join us during lunch for a school picnic where we will provide bagels, muffins, and more!",
+            "date": "2023-04-17",
+            "points": "20"
+        },
+        {
+            "name": "Spelling Bee",
+            "description": "come participate in our school spelling bee! The winner will win a special prize!\r\n",
+            "date": "2023-04-27",
+            "points": "20"
         }
     ]
 }
